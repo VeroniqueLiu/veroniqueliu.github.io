@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>I meet the sunset - My personal blog - Sifan</title>
-	<meta name="description" content="You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes.">
+	<title>The superclass "javax.servlet.http.HttpServlet" was not found on the Java Build Path报错 - My personal blog - Sifan</title>
+	<meta name="description" content="JSP运行的时候报错The superclass "javax.servlet.http.HttpServlet" was not found on the Java Build Path">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta property="og:image" content="">
@@ -51,27 +51,37 @@
 
   <article class="article-page">
     <div class="page-image">
-      <div class="cover-image" style="background: url(/assets/img/post-2.jpg) center no-repeat; background-size: cover;"></div>
+      <div class="cover-image" style="background: url(/assets/img/jspserverlet.jpg) center no-repeat; background-size: cover;"></div>
     </div>
     <div class="wrapper">
       <div class="page-content">
         <div class="header-page">
-          <h1 class="page-title">I meet the sunset</h1>
-          <div class="page-date"><time datetime="2017-08-24 18:32:20 +0800">2017, Aug 24</time></div>
+          <h1 class="page-title">The superclass "javax.servlet.http.HttpServlet" was not found on the Java Build Path报错</h1>
+          <div class="page-date"><time datetime="2017-11-12 18:32:20 +0800">2017, Nov 12</time></div>
         </div>
-        <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+        <p>使用Eclipse建立工程的时候JSP使用出现报错如下：</p>
 
-<p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">The</span> <span class="n">superclass</span> <span class="s2">"javax.servlet.http.HttpServlet"</span> <span class="n">was</span> <span class="n">not</span> <span class="n">found</span> <span class="n">on</span> <span class="n">the</span> <span class="no">Java</span> <span class="no">Build</span> <span class="no">Path</span></code></pre></figure>
 
-<p>Jekyll also offers powerful support for code snippets:</p>
+<p>我最终发现结果是缺少servlet-api.jar
+解决方法：
+右键点击项目文件：</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
-<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Build</span> <span class="no">Path</span><span class="o">-&gt;</span> <span class="no">Configure</span> <span class="no">Build</span> <span class="no">Path</span><span class="o">...</span> <span class="o">-&gt;</span> <span class="no">Libraries</span></code></pre></figure>
 
-<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+<p>1.如果没有Apache Tomcat：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Add</span> <span class="no">Library</span> <span class="o">-&gt;</span> <span class="no">Server</span> <span class="no">Runtime</span> <span class="o">-&gt;</span> <span class="no">Next</span> <span class="o">-&gt;</span> <span class="c1">#{选择Apache} -&gt; Finish</span></code></pre></figure>
+
+<p>然后刷新看看报错是否消失</p>
+
+<p>2.如果有Apache Tomcat：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Add</span> <span class="no">Library</span><span class="o">...</span> <span class="o">-&gt;</span> <span class="no">User</span> <span class="no">Library</span> <span class="o">-&gt;</span> <span class="no">Next</span> <span class="o">-&gt;</span> <span class="no">User</span> <span class="no">Libraries</span> <span class="o">-&gt;</span> <span class="no">New</span><span class="o">...</span> <span class="o">-&gt;</span> <span class="c1">#{起一个自己喜欢的名字}</span>
+<span class="o">-&gt;</span> <span class="no">OK</span> <span class="o">-&gt;</span> <span class="no">Add</span> <span class="no">External</span> <span class="no">JARs</span> <span class="o">-&gt;</span> <span class="c1">#{搜索到你的Apache安装路径下的lib找到servlet-api.jar}</span>
+<span class="o">-&gt;</span> <span class="nb">open</span> <span class="o">-&gt;</span> <span class="no">OK</span> <span class="o">-&gt;</span> <span class="no">Finish</span> <span class="o">-&gt;</span> <span class="no">OK</span></code></pre></figure>
+
+<p>然后问题就解决啦</p>
 
 
         <div class="page-footer">
@@ -80,21 +90,21 @@
             
             <a href="/tags#Blog" class="tag">| Blog</a>
             
-            <a href="/tags#Sunset" class="tag">| Sunset</a>
+            <a href="/tags#JSP" class="tag">| JSP</a>
             
           </div><!-- End Tags -->
           <div class="page-share">
             <span>Share:</span>
-            <a href="https://twitter.com/intent/tweet?text=I meet the sunset&url=/i-meet-the-sunset/" title="Share on Twitter" rel="nofollow" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            <a href="https://facebook.com/sharer.php?u=/i-meet-the-sunset/" title="Share on Facebook" rel="nofollow" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="https://plus.google.com/share?url=/i-meet-the-sunset/" title="Share on Google+" rel="nofollow" target="_blank"><i class="fa fa-google" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/intent/tweet?text=The superclass "javax.servlet.http.HttpServlet" was not found on the Java Build Path报错&url=/javax-servlet/" title="Share on Twitter" rel="nofollow" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href="https://facebook.com/sharer.php?u=/javax-servlet/" title="Share on Facebook" rel="nofollow" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="https://plus.google.com/share?url=/javax-servlet/" title="Share on Google+" rel="nofollow" target="_blank"><i class="fa fa-google" aria-hidden="true"></i></a>
           </div><!-- End Share -->
         </div>
         <section class="author-box">
   <img src="/assets/img/sifan-face.jpg" alt="思凡喵" class="author-img">
   <div class="author-desc">
     <h2>思凡喵</h2>
-    <p>My name is Sifan Liu. I’m a undergraduate student in HIT.</p>
+    <p>My name is Sifan Liu. I’m an undergraduate student in HIT.</p>
     <ul>
       
         <li class="email"><a href="mailto:1140910325@stu.hit.edu.cn"><i class="fa fa-envelope-o"></i></a></li>
@@ -117,19 +127,19 @@
   <div class="recent-list">
     
       
-        <a href="/i-conquer-the-himalayas/" class="recent-item" style="background: url(/assets/img/post-1.jpg) center no-repeat; background-size: cover;"><span>I conquer the Himalayas</span></a>
+        <a href="/javax-servlet/" class="recent-item" style="background: url(/assets/img/jspserverlet.jpg) center no-repeat; background-size: cover;"><span>The superclass "javax.servlet.http.HttpServlet" was not found on the Java Build Path报错</span></a>
       
     
       
-        <a href="/i-meet-the-sunset/" class="recent-item" style="background: url(/assets/img/post-2.jpg) center no-repeat; background-size: cover;"><span>I meet the sunset</span></a>
+        <a href="/Mac-Tomcat/" class="recent-item" style="background: url(/assets/img/tomcat.jpg) center no-repeat; background-size: cover;"><span>Mac如何配置Tomcat</span></a>
       
     
       
-        <a href="/meeting-with-adventures/" class="recent-item" style="background: url(/assets/img/post-3.jpg) center no-repeat; background-size: cover;"><span>On a meeting with adventures</span></a>
+        <a href="/refusing-to-merge-unrelated-histories/" class="recent-item" style="background: url(/assets/img/rtmu.jpg) center no-repeat; background-size: cover;"><span>Git中显示 refusing to merge unrelated histories的解决办法</span></a>
       
     
       
-        <a href="/snowboarding-and-my-life/" class="recent-item" style="background: url(/assets/img/post-4.jpg) center no-repeat; background-size: cover;"><span>Snowboarding and my life</span></a>
+        <a href="/How-to-use-Jekyll-to-add-posters/" class="recent-item" style="background: url(/assets/img/htuj.jpg) center no-repeat; background-size: cover;"><span>怎样使用Jekyll添加博客内容</span></a>
       
     
   </div>

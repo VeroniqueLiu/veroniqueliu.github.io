@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Time to think - My personal blog - Sifan</title>
-	<meta name="description" content="You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes.">
+	<title>Git中显示 refusing to merge unrelated histories的解决办法 - My personal blog - Sifan</title>
+	<meta name="description" content="Git操作中在使用git merge 的时候出现refusing to merge unrelated histories解决方法">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta property="og:image" content="">
@@ -51,27 +51,25 @@
 
   <article class="article-page">
     <div class="page-image">
-      <div class="cover-image" style="background: url(/assets/img/post-5.jpg) center no-repeat; background-size: cover;"></div>
+      <div class="cover-image" style="background: url(/assets/img/rtmu.jpg) center no-repeat; background-size: cover;"></div>
     </div>
     <div class="wrapper">
       <div class="page-content">
         <div class="header-page">
-          <h1 class="page-title">Time to think</h1>
-          <div class="page-date"><time datetime="2017-08-21 18:32:20 +0800">2017, Aug 21</time></div>
+          <h1 class="page-title">Git中显示 refusing to merge unrelated histories的解决办法</h1>
+          <div class="page-date"><time datetime="2017-10-11 18:32:20 +0800">2017, Oct 11</time></div>
         </div>
-        <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+        <p><img src="https://github.com/VeroniqueLiu/veroniqueliu.github.io/assets/img/rtmu001.jpg" alt="image01" /></p>
 
-<p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+<p>这个问题出现的主要原因就是两个merge的内容不存在共同的祖先，所以实施merge或者pull(fetch+merge)操作的时候会显示refusing to merge unrelated histories。</p>
 
-<p>Jekyll also offers powerful support for code snippets:</p>
+<p>这个时候可以使用</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
-<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">--</span><span class="n">allow</span><span class="o">-</span><span class="n">unrelated</span><span class="o">-</span><span class="n">histories</span>
+<span class="c1">#举例说明</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="n">branch</span> <span class="o">--</span><span class="n">allow</span><span class="o">-</span><span class="n">unrelated</span><span class="o">-</span><span class="n">histories</span></code></pre></figure>
 
-<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+<p>但是这样的使用和强行提交没有什么区别，相当于强迫这次merge的实现，这样会把整个项目中的文件都当作新文件进行提交。</p>
 
 
         <div class="page-footer">
@@ -80,21 +78,21 @@
             
             <a href="/tags#Blog" class="tag">| Blog</a>
             
-            <a href="/tags#Meditation" class="tag">| Meditation</a>
+            <a href="/tags#Git" class="tag">| Git</a>
             
           </div><!-- End Tags -->
           <div class="page-share">
             <span>Share:</span>
-            <a href="https://twitter.com/intent/tweet?text=Time to think&url=/time-to-think/" title="Share on Twitter" rel="nofollow" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            <a href="https://facebook.com/sharer.php?u=/time-to-think/" title="Share on Facebook" rel="nofollow" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="https://plus.google.com/share?url=/time-to-think/" title="Share on Google+" rel="nofollow" target="_blank"><i class="fa fa-google" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/intent/tweet?text=Git中显示 refusing to merge unrelated histories的解决办法&url=/refusing-to-merge-unrelated-histories/" title="Share on Twitter" rel="nofollow" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href="https://facebook.com/sharer.php?u=/refusing-to-merge-unrelated-histories/" title="Share on Facebook" rel="nofollow" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="https://plus.google.com/share?url=/refusing-to-merge-unrelated-histories/" title="Share on Google+" rel="nofollow" target="_blank"><i class="fa fa-google" aria-hidden="true"></i></a>
           </div><!-- End Share -->
         </div>
         <section class="author-box">
   <img src="/assets/img/sifan-face.jpg" alt="思凡喵" class="author-img">
   <div class="author-desc">
     <h2>思凡喵</h2>
-    <p>My name is Sifan Liu. I’m a undergraduate student in HIT.</p>
+    <p>My name is Sifan Liu. I’m an undergraduate student in HIT.</p>
     <ul>
       
         <li class="email"><a href="mailto:1140910325@stu.hit.edu.cn"><i class="fa fa-envelope-o"></i></a></li>
@@ -117,19 +115,19 @@
   <div class="recent-list">
     
       
-        <a href="/i-conquer-the-himalayas/" class="recent-item" style="background: url(/assets/img/post-1.jpg) center no-repeat; background-size: cover;"><span>I conquer the Himalayas</span></a>
+        <a href="/javax-servlet/" class="recent-item" style="background: url(/assets/img/jspserverlet.jpg) center no-repeat; background-size: cover;"><span>The superclass "javax.servlet.http.HttpServlet" was not found on the Java Build Path报错</span></a>
       
     
       
-        <a href="/i-meet-the-sunset/" class="recent-item" style="background: url(/assets/img/post-2.jpg) center no-repeat; background-size: cover;"><span>I meet the sunset</span></a>
+        <a href="/Mac-Tomcat/" class="recent-item" style="background: url(/assets/img/tomcat.jpg) center no-repeat; background-size: cover;"><span>Mac如何配置Tomcat</span></a>
       
     
       
-        <a href="/meeting-with-adventures/" class="recent-item" style="background: url(/assets/img/post-3.jpg) center no-repeat; background-size: cover;"><span>On a meeting with adventures</span></a>
+        <a href="/refusing-to-merge-unrelated-histories/" class="recent-item" style="background: url(/assets/img/rtmu.jpg) center no-repeat; background-size: cover;"><span>Git中显示 refusing to merge unrelated histories的解决办法</span></a>
       
     
       
-        <a href="/snowboarding-and-my-life/" class="recent-item" style="background: url(/assets/img/post-4.jpg) center no-repeat; background-size: cover;"><span>Snowboarding and my life</span></a>
+        <a href="/How-to-use-Jekyll-to-add-posters/" class="recent-item" style="background: url(/assets/img/htuj.jpg) center no-repeat; background-size: cover;"><span>怎样使用Jekyll添加博客内容</span></a>
       
     
   </div>
